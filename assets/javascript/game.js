@@ -18,6 +18,8 @@ for (var i = 0; i < chosenWord.length; i++) {
     underScores.push(" _ ");
 };
 
+document.getElementById("currentWord").innerText = chosenWord;
+
 
 
 // Captures the key press, converts it to lowercase, and saves it to a variable.

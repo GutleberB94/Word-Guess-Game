@@ -1,3 +1,18 @@
 .jumbotron {
     text-align: center;
+
+}
+
+.display-column {
+border: solid 3px black;
+}
+
+.word-column {
+    border: solid 3px red;
+    word-spacing: 5px;
+}
+
+.game-row {
+    padding-bottom: 20%;
+    border: solid 3px blue;
 }
