@@ -27,23 +27,16 @@ for (var i = 0; i < chosenWord.length; i++) {
         var guessedLetter = event.key.toLowerCase();
         console.log(guessedLetter);
 
-
         // put for statements here to handle guessed letter correctly
 
         if (chosenWord.indexOf(guessedLetter) === -1) {
-            wrongLetters.push(String.fromCharCode(guessedLetter));
+            wrongLetters.push(guessedLetter);
             numOfGuesses = numOfGuesses - 1;
-        } else {
+        } 
+        else if(!chosenWord.indexOf(guessedLetter) === -1) {
             correctLetters.push(guessedLetter);
-        }
-        return false;
+        } 
     }
-//}
-
-document.write("Word to guess " + underScores + "<br>");
-document.write("Wrong letters guessed " + wrongLetters + "<br>");
-document.write("correct letters guessed " + correctLetters + "<br>");
-document.write("number of guesses remaining " + numOfGuesses + "<br>");
 
 
 
@@ -51,3 +44,20 @@ console.log(wrongLetters);
 console.log(correctLetters);
 console.log(chosenWord);
 console.log(underScores);
+
+/*
+function updateDisplay() {
+
+    document.getElementById("totalWins").innerText = wins;
+    document.getElementById("currentWord").innerText = "";
+    for (var i = 0; i < guessingWord.length; i++) {
+        document.getElementById("currentWord").innerText += guessingWord[i];
+    }
+    document.getElementById("remainingGuesses").innerText = remainingGuesses;
+    document.getElementById("guessedLetters").innerText = guessedLetters;
+    if(remainingGuesses <= 0) {
+        document.getElementById("gameover-image").style.cssText = "display: block";
+        document.getElementById("pressKeyTryAgain").style.cssText = "display:block";
+        hasFinished = true;
+    }
+    */
