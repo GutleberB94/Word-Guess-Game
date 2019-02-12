@@ -71,7 +71,6 @@ document.onkeyup = function (event) {
 
     // for statements to handle guessed letter correctly
 
-    //for (var i = 0; i < chosenWord.length; i++) {
         if (chosenWord.indexOf(guessedLetter) === -1 && numOfGuesses > 0) {
             wrongLetters.push(guessedLetter);
             numOfGuesses--;
