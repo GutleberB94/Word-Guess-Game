@@ -10,7 +10,7 @@ var totalWins = 0;
 // select random word from array of words
 
 var chosenWord = wordToGuess[Math.floor(Math.random() * wordToGuess.length)];
-chosenWord.toLowerCase;
+chosenWord.toLowerCase();
 console.log(chosenWord);
 
 // set number of underscores
@@ -24,6 +24,8 @@ for (var i = 0; i < chosenWord.length; i++) {
 
 // resets clears the arrays and resets lives
 function gameReset() {
+
+    chosenWord = wordToGuess[Math.floor(Math.random() * wordToGuess.length)];
     numOfGuesses = 15;
 
     wrongLetters = [];
@@ -33,6 +35,11 @@ function gameReset() {
     for (var i = 0; i < chosenWord.length; i++) {
         underScores.push(" _ ");
     }
+
+    document.getElementById("guessedLetters").innerHTML = wrongLetters;
+    document.getElementById("remainingGuesses").innerHTML = numOfGuesses;
+    document.getElementById("currentWord").innerHTML = underScores;
+    document.getElementById("totalWins").innerHTML = totalWins;
 
 }
 
@@ -64,19 +71,20 @@ document.onkeyup = function (event) {
 
     // for statements to handle guessed letter correctly
 
-    if (chosenWord.indexOf(guessedLetter) === -1 && numOfGuesses > 0) {
-        wrongLetters.push(guessedLetter);
-        numOfGuesses = numOfGuesses - 1;
+    //for (var i = 0; i < chosenWord.length; i++) {
+        if (chosenWord.indexOf(guessedLetter) === -1 && numOfGuesses > 0) {
+            wrongLetters.push(guessedLetter);
+            numOfGuesses--;
 
-        console.log(wrongLetters);
-        console.log(numOfGuesses);
+            console.log(wrongLetters);
+            console.log(numOfGuesses);
 
-        document.getElementById("guessedLetters").innerHTML = wrongLetters;
-        document.getElementById("remainingGuesses").innerHTML = numOfGuesses;
-        checkWin();
-    }
-
-    if (chosenWord.indexOf(guessedLetter) > -1 && numOfGuesses > 0) {
+            document.getElementById("guessedLetters").innerHTML = wrongLetters;
+            document.getElementById("remainingGuesses").innerHTML = numOfGuesses;
+            checkWin();
+        }
+    
+    else  {
         correctLetters.push(guessedLetter);
         underScores[chosenWord.indexOf(guessedLetter)] = guessedLetter;
 
@@ -86,6 +94,6 @@ document.onkeyup = function (event) {
         document.getElementById("currentWord").innerHTML = underScores;
         checkWin();
     }
-
+    
 
 }
