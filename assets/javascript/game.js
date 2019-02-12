@@ -7,13 +7,10 @@ var correctLetters = [];
 var totalWins = 0;
 
 
-var underScoreDisply = document.getElementById("currentWord");
-
-
 // select random word from array of words
 
 var chosenWord = wordToGuess[Math.floor(Math.random() * wordToGuess.length)];
-chosenWord.toLocaleLowerCase();
+chosenWord.toLowerCase;
 console.log(chosenWord);
 
 // set number of underscores
@@ -32,7 +29,7 @@ function gameReset() {
     wrongLetters = [];
     correctLetters = [];
 
-    underScores = []
+    underScores = [];
     for (var i = 0; i < chosenWord.length; i++) {
         underScores.push(" _ ");
     }
@@ -41,45 +38,54 @@ function gameReset() {
 
 
 function checkWin() {
-if(underScores.toString == chosenWord.toString) {
-    totalWins++;
-    alert("you win!!");
-    gameReset();
+    console.log(underScores.join(""), chosenWord);
+    if (underScores.join("") == chosenWord) {
+        console.log(underScores);
+        console.log(chosenWord);
+        totalWins++;
+        alert("you win!!");
+        gameReset();
+    }
+
+    if (numOfGuesses < 1) {
+        alert("you lose");
+        gameReset();
+    }
+
 }
 
-if(numOfGuesses < 1) {
-    alert("you lose");
-    gameReset();
-}
 
-}
 
 // Captures the key press, converts it to lowercase, and saves it to a variable.
 
 document.onkeyup = function (event) {
-        var guessedLetter = event.key.toLowerCase();
-        console.log(guessedLetter);
+    var guessedLetter = event.key.toLowerCase();
+    console.log(guessedLetter);
 
-        // put for statements here to handle guessed letter correctly
+    // for statements to handle guessed letter correctly
 
-        if (chosenWord.indexOf(guessedLetter) === -1 && numOfGuesses > 0) {
-            wrongLetters.push(guessedLetter);
-            numOfGuesses = numOfGuesses - 1;
-            console.log(wrongLetters);
-            console.log(numOfGuesses);
-            document.getElementById("guessedLetters").innerHTML = wrongLetters;
-            document.getElementById("remainingGuesses").innerHTML = numOfGuesses;
-            checkWin();
-        } 
+    if (chosenWord.indexOf(guessedLetter) === -1 && numOfGuesses > 0) {
+        wrongLetters.push(guessedLetter);
+        numOfGuesses = numOfGuesses - 1;
 
-        if (chosenWord.indexOf(guessedLetter) > -1 && numOfGuesses > 0) {
-            correctLetters.push(guessedLetter);
-            underScores[chosenWord.indexOf(guessedLetter)] = guessedLetter;
-            console.log(correctLetters);
-            console.log(underScores);
-            document.getElementById("currentWord").innerHTML = underScores;
-            checkWin();
-        } 
+        console.log(wrongLetters);
+        console.log(numOfGuesses);
 
-
+        document.getElementById("guessedLetters").innerHTML = wrongLetters;
+        document.getElementById("remainingGuesses").innerHTML = numOfGuesses;
+        checkWin();
     }
+
+    if (chosenWord.indexOf(guessedLetter) > -1 && numOfGuesses > 0) {
+        correctLetters.push(guessedLetter);
+        underScores[chosenWord.indexOf(guessedLetter)] = guessedLetter;
+
+        console.log(correctLetters);
+        console.log(underScores);
+
+        document.getElementById("currentWord").innerHTML = underScores;
+        checkWin();
+    }
+
+
+}
