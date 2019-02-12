@@ -71,28 +71,30 @@ document.onkeyup = function (event) {
 
     // for statements to handle guessed letter correctly
 
-        if (chosenWord.indexOf(guessedLetter) === -1 && numOfGuesses > 0) {
-            wrongLetters.push(guessedLetter);
-            numOfGuesses--;
+    if (chosenWord.indexOf(guessedLetter) === -1 && numOfGuesses > 0) {
+        wrongLetters.push(guessedLetter);
+        numOfGuesses--;
 
-            console.log(wrongLetters);
-            console.log(numOfGuesses);
+        console.log(wrongLetters);
+        console.log(numOfGuesses);
 
-            document.getElementById("guessedLetters").innerHTML = wrongLetters;
-            document.getElementById("remainingGuesses").innerHTML = numOfGuesses;
-            checkWin();
-        }
-    
-    else  {
-        correctLetters.push(guessedLetter);
-        underScores[chosenWord.indexOf(guessedLetter)] = guessedLetter;
-
-        console.log(correctLetters);
-        console.log(underScores);
-
-        document.getElementById("currentWord").innerHTML = underScores;
+        document.getElementById("guessedLetters").innerHTML = wrongLetters;
+        document.getElementById("remainingGuesses").innerHTML = numOfGuesses;
         checkWin();
     }
-    
 
+    else {
+        for (var i = 0; i < chosenWord.length; i++) {
+            if (guessedLetter === chosenWord[i]) {
+            correctLetters.push(guessedLetter);
+            underScores[i] = guessedLetter;
+            }
+            console.log(correctLetters);
+            console.log(underScores);
+
+            document.getElementById("currentWord").innerHTML = underScores;
+            checkWin();
+        }
+
+    }
 }
